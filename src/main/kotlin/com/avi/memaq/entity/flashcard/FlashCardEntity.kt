@@ -1,6 +1,7 @@
 package com.avi.memaq.entity.flashcard
 
-import java.util.UUID
+import com.avi.memaq.entity.DeckEntity
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -17,6 +18,6 @@ class FlashCardEntity(
   @OneToOne(cascade = [CascadeType.ALL], optional = false)
   @JoinColumn
   val answer: FlashCardContentEntity,
-  @Column(nullable = false)
-  val deckId: Long = 1,
+  @ManyToOne(fetch = FetchType.LAZY)
+  var deck: DeckEntity? = null,
 )
